@@ -28,6 +28,7 @@ class Notation extends Component {
       notation,
       parserParams,
       renderParams,
+      TimingCallbacks,
     } = this.props;
 
     this.notation = abc.renderAbc(
@@ -36,6 +37,7 @@ class Notation extends Component {
       engraverParams,
       parserParams,
       renderParams,
+      TimingCallbacks,
     );
   }
 
