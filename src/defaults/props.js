@@ -65,6 +65,7 @@ const notationProps = {
   engraverParams,
   parserParams,
   renderParams,
+  TimingCallbacks,
 };
 
 const midiProps = Object.assign({
