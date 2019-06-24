@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import abc from 'abcjs';
+import {TimingCallbacks} from 'abcjs';
 
 import { notationProps } from '../defaults/props';
 
@@ -15,10 +16,20 @@ class Notation extends Component {
 
   componentDidMount() {
     this.renderNotation();
+
+    if (this.notation[0] && this.props.timingParams && this.props.onSetControls) {
+      this.setControls(this.notation[0])
+    }
+
   }
 
   componentDidUpdate() {
     this.renderNotation();
+  }
+
+  setControls(tune) {
+    const callbacks = new TimingCallbacks(tune, this.props.timingParams)
+    this.props.onSetControls(callbacks)
   }
 
   renderNotation() {
@@ -28,7 +39,6 @@ class Notation extends Component {
       notation,
       parserParams,
       renderParams,
-      TimingCallbacks,
     } = this.props;
 
     this.notation = abc.renderAbc(
@@ -37,8 +47,8 @@ class Notation extends Component {
       engraverParams,
       parserParams,
       renderParams,
-      TimingCallbacks,
     );
+
   }
 
   render() {
@@ -56,6 +66,8 @@ Notation.propTypes = {
   notation: PropTypes.string.isRequired,
   parserParams: PropTypes.object,
   renderParams: PropTypes.object,
+  timingParams: PropTypes.object,
+  onSetControls: PropTypes.func,
 };
 
 Notation.defaultProps = notationProps;

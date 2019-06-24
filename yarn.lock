@@ -6,7 +6,7 @@ abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
 
-abcjs@5.5.1:
+abcjs@5.6.11:
   version "5.6.11"
   resolved "https://registry.yarnpkg.com/abcjs/-/abcjs-5.6.11.tgz#c220f35feadc5acfd8c76df853ef5b15b0414e5d"
   integrity sha512-in2TTdFNUg0ARkQzC46edHOjR8XmFrPKcNzbPhXnFnkp4AU3xHFBHM7PL5z4FoRdv/T7mvnSQivOjGscB/H/ig==
