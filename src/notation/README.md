@@ -22,3 +22,6 @@ export default ({ notation}) => <Notation notation={notation} />;
 | `engraverParams` | [Link](../defaults/README.md#engraver-params) | |
 | `parserParams`   | [Link](../defaults/README.md#parser-params)   | |
 | `renderParams`   | [Link](../defaults/README.md#render-params)   | |
+| `timingParams`   | [Link](../defaults/README.md#timing-params)   | |
+| `onSetControls`   | [Link](../defaults/README.md#TimingCallbacks)| |
+

@@ -1,10 +1,14 @@
 # Default Props
 
-* [Engraver Params](#engraver-params)
-* [Inline Control Params](#inline-control-params)
-* [Midi Params](#midi-params)
-* [Parser Params](#parser-params)
-* [Render Params](#render-params)
+- [Default Props](#Default-Props)
+    - [Engraver Params](#Engraver-Params)
+    - [Parser Params](#Parser-Params)
+    - [Render Params](#Render-Params)
+    - [Timing Params](#Timing-Params)
+    - [TimingCallbacks](#TimingCallbacks)
+    - [Midi Params](#Midi-Params)
+    - [Inline Control Params](#Inline-Control-Params)
+  - [Editor Params](#Editor-Params)
 
 All of these properties are sourced from the ABCjs documentation - [here](https://github.com/paulrosen/abcjs/blob/master/docs/api.md)
 
@@ -37,6 +41,30 @@ All of these properties are sourced from the ABCjs documentation - [here](https:
 | `scrollHorizontal`   | false   | Should there be a horizontal scrollbar if the music is wider than the viewport? (requires viewportHorizontal to be true.) |
 | `startingTune`       | 0       | The index of the tune in the tunebook to render (starting at zero for the first tune). |
 | `viewportHorizontal` | false   | Should the horizontal width be limited by the device's width? |
+
+### Timing Params
+| Param | Default | Description |
+| ------------- | ------- | ----------- |
+| `qpm` | whatever is in the Q: field | Number of beats per minute. |
+| `extraMeasuresAtBeginning` | 0 | Don't start the callbacks right away, but insert these number of measures first. |
+| `beatCallback` | null | Called for each beat passing the beat number (starting at 0). |
+| `eventCallback` | null | Called for each event (either a note, a rest, or a chord, and notes in separate voices are grouped together.) |
+| `lineEndCallback` | null | Called at the end of each line. (This is useful if you want to be sure the music is scrolled into view at the right time.) See `lineEndAnticipation` for more details. |
+| `lineEndAnticipation` | 0 | The number of milliseconds for the `lineEndCallback` to anticipate end of the line. That is, if you want to get the callback half a second before the end of the line, use 500. |
+| `beatSubdivisions` | 1 | How many callbacks should happen for each beat. This allows finer control in the client, for instance, to handle a progress bar. |
+
+### TimingCallbacks
+
+Generates instance of abcjs TimingCallbacks controls through a callback handler to return an object with the properties `start()`, `stop()`, `pause()`, `reset()`, `setProgress(percent)`.  
+
+These timing controls are useful if you want to interact with the notation using an audio track instead of MIDI 
+
+__Usage:__ 
+`onSetControls((controls) => setControls(controls))` 
+
+  *** Also requires timingParams to be set for Notation component
+
+Where setControls is a React hooks useState instance, or class function to store the returned state from the handler.
 
 ### Midi Params
 | Param              | Default                         | Description |
